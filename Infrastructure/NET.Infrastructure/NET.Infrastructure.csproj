@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\Repositories\FinansalYonetim\" />
+    <Folder Include="Data\Repositories\IletisimYonetimi\" />
+    <Folder Include="Data\Repositories\SiteYonetimi\" />
+    <Folder Include="Data\SQL\FinansalYonetim\" />
+    <Folder Include="Data\SQL\IletisimYonetimi\" />
+    <Folder Include="Data\SQL\SiteYonetimi\" />
+    <Folder Include="Data\SQL\TenantYonetimi\" />
+    <Folder Include="ExternalServices\Email\" />
+    <Folder Include="ExternalServices\Payment\" />
+    <Folder Include="ExternalServices\SMS\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.4" />
+    <PackageReference Include="Npgsql" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\NET.Application\NET.Application.csproj" />
+    <ProjectReference Include="..\..\Core\NET.Domain\NET.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\FinansalYonetim\" />
+    <Folder Include="Controllers\IletisimYonetimi\" />
+    <Folder Include="Controllers\SiteYonetimi\" />
+    <Folder Include="Controllers\TenantYonetimi\" />
+    <Folder Include="IntegrationTests\FinansalYonetim\" />
+    <Folder Include="IntegrationTests\IletisimYonetimi\" />
+    <Folder Include="IntegrationTests\SiteYonetimi\" />
+    <Folder Include="IntegrationTests\TenantYonetimi\" />
+  </ItemGroup>
+
+</Project>

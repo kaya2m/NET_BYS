@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Behaviors\" />
+    <Folder Include="Common\Mapping\" />
+    <Folder Include="FinansalYonetim\Commands\" />
+    <Folder Include="FinansalYonetim\DTOs\" />
+    <Folder Include="FinansalYonetim\EventHandlers\" />
+    <Folder Include="FinansalYonetim\Validators\" />
+    <Folder Include="FinansalYonetim\Queries\" />
+    <Folder Include="IletisimYonetimi\Commands\" />
+    <Folder Include="IletisimYonetimi\DTOs\" />
+    <Folder Include="IletisimYonetimi\EventHandlers\" />
+    <Folder Include="IletisimYonetimi\Validators\" />
+    <Folder Include="IletisimYonetimi\Queries\" />
+    <Folder Include="SiteYonetimi\Commands\" />
+    <Folder Include="SiteYonetimi\DTOs\" />
+    <Folder Include="SiteYonetimi\EventHandlers\" />
+    <Folder Include="SiteYonetimi\Validators\" />
+    <Folder Include="SiteYonetimi\Queries\" />
+    <Folder Include="TenantYonetimi\Commands\" />
+    <Folder Include="TenantYonetimi\DTOs\" />
+    <Folder Include="TenantYonetimi\EventHandlers\" />
+    <Folder Include="TenantYonetimi\Validators\" />
+    <Folder Include="TenantYonetimi\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+  </ItemGroup>
+
+</Project>
