@@ -32,8 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseSwaggerDocumentation();
-    app.UseCustomMiddlewares();
 }
+app.UseCustomMiddlewares();
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");

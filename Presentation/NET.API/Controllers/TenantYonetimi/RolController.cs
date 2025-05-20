@@ -5,7 +5,7 @@ using NET.Domain.TenantYonetimi.Interfaces;
 
 namespace NET.API.Controllers.TenantYonetimi
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles ="Admin")]
     public class RolController : ApiControllerBase
     {
         private readonly IRolRepository _rolRepository;
@@ -18,8 +18,7 @@ namespace NET.API.Controllers.TenantYonetimi
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var tenantId = GetTenantIdFromRequest();
-            var roles = await _rolRepository.GetAllByTenantIdAsync(tenantId);
+            var roles = await _rolRepository.GetAllByTenantIdAsync(CurrentUser.TenantId);
             return Ok(roles);
         }
 
@@ -38,12 +37,10 @@ namespace NET.API.Controllers.TenantYonetimi
         [HttpGet("{id}/izinler")]
         public async Task<IActionResult> GetIzinlerByRolId(int id)
         {
-            var tenantId = GetTenantIdFromRequest();
-
-            if (!await _rolRepository.ExistsByIdAsync(id, tenantId))
+            if (!await _rolRepository.ExistsByIdAsync(id, CurrentUser.TenantId))
                 return NotFound();
 
-            var izinler = await _rolRepository.GetIzinlerByRolIdAsync(id, tenantId);
+            var izinler = await _rolRepository.GetIzinlerByRolIdAsync(id, CurrentUser.TenantId);
             return Ok(izinler);
         }
 

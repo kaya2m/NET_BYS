@@ -13,7 +13,7 @@ namespace NET.API.Extensions
         public static IApplicationBuilder UseCustomMiddlewares(this IApplicationBuilder app)
         {
             app.UseMiddleware<ErrorHandlingMiddleware>();
-            //app.UseMiddleware<TenantMiddleware>();
+            app.UseMiddleware<TenantMiddleware>();
 
             return app;
         }

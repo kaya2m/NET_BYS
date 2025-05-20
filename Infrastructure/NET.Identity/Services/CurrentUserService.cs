@@ -25,12 +25,12 @@ namespace NET.Identity.Services
             }
         }
 
-        public int? TenantId
+        public int TenantId
         {
             get
             {
                 var tenantId = _httpContextAccessor.HttpContext?.User?.FindFirstValue("tenant_id");
-                return !string.IsNullOrEmpty(tenantId) && int.TryParse(tenantId, out var id) ? id : null;
+                return !string.IsNullOrEmpty(tenantId) && int.TryParse(tenantId, out var id) ? id : 0;
             }
         }
 
@@ -44,7 +44,7 @@ namespace NET.Identity.Services
 
         public bool IsInRole(string role)
         {
-            return string.Equals(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Role), role, StringComparison.OrdinalIgnoreCase);
+            return _httpContextAccessor.HttpContext?.User?.IsInRole(role) ?? false;
         }
     }
 }

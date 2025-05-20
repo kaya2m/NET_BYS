@@ -6,7 +6,7 @@
     public interface ICurrentUserService
     {
         int? UserId { get; }
-        int? TenantId { get; }
+        int TenantId { get; }
         string UserName { get; }
         string Email { get; }
         string Role { get; }

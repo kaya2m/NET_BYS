@@ -41,6 +41,7 @@ namespace NET.API.Controllers.TenantYonetimi
         }
 
         [HttpPost]
+        [AllowAnonymous]
         [Authorize(Roles = "Admin,SiteYoneticisi")]
         public async Task<IActionResult> Create([FromBody] CreateKullaniciRequest request)
         {

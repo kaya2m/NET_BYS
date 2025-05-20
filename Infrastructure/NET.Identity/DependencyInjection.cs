@@ -1,12 +1,13 @@
-﻿using System;
-using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using NET.Application.Common.Interfaces;
 using NET.Identity.Models;
 using NET.Identity.Services;
+using System;
+using System.Security.Claims;
+using System.Text;
 
 namespace NET.Identity
 {
@@ -21,8 +22,7 @@ namespace NET.Identity
             var jwtSettingsSection = configuration.GetSection("JwtSettings");
             services.Configure<JwtSettings>(jwtSettingsSection);
 
-            var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
-            var key = Encoding.ASCII.GetBytes(jwtSettings.SecretKey);
+            var key = Encoding.ASCII.GetBytes(jwtSettingsSection["SecretKey"]);
 
             // JWT kimlik doğrulama ekle
             services.AddAuthentication(options =>
@@ -32,18 +32,19 @@ namespace NET.Identity
             })
             .AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = false;
+                options.RequireHttpsMetadata = false; 
                 options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = true,
-                    ValidIssuer = jwtSettings.Issuer,
+                    ValidIssuer = jwtSettingsSection["Issuer"],
                     ValidateAudience = true,
-                    ValidAudience = jwtSettings.Audience,
+                    ValidAudience = jwtSettingsSection["Audience"],
                     ValidateLifetime = true,
-                    ClockSkew = TimeSpan.Zero
+                    ClockSkew = TimeSpan.Zero,
+                    RoleClaimType = ClaimTypes.Role
                 };
             });
 
@@ -54,7 +55,7 @@ namespace NET.Identity
             services.AddSingleton<JwtTokenService>();
             services.AddScoped<IIdentityService, IdentityService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-
+            services.AddAuthorization();
             return services;
         }
     }

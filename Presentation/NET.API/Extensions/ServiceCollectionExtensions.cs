@@ -2,9 +2,6 @@
 
 namespace NET.API.Extensions
 {
-    /// <summary>
-    /// IServiceCollection extensions metodları.
-    /// </summary>
     public static class ServiceCollectionExtensions
     {
         /// <summary>
@@ -27,7 +24,7 @@ namespace NET.API.Extensions
                     Description = "JWT Yetkilendirme header'ı. Örnek: \"Authorization: Bearer {token}\"",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
+                    Type = SecuritySchemeType.Http,
                     Scheme = "Bearer"
                 });
 
@@ -40,17 +37,16 @@ namespace NET.API.Extensions
                             {
                                 Type = ReferenceType.SecurityScheme,
                                 Id = "Bearer"
-                            },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header
+                            }
                         },
-                        new string[] {}
+                        Array.Empty<string>()
                     }
                 });
             });
 
             return services;
         }
+
+
     }
 }

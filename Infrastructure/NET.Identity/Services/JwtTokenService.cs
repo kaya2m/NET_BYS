@@ -26,10 +26,8 @@ namespace NET.Identity.Services
         /// </summary>
         public string GenerateJwtToken(ApplicationUser user)
         {
-            // Token'ın geçerlilik süresi
             var expires = DateTime.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes);
 
-            // Token için claim'ler
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
@@ -39,17 +37,14 @@ namespace NET.Identity.Services
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            // Rol varsa ekle
             if (!string.IsNullOrEmpty(user.RolAdi))
             {
                 claims.Add(new Claim(ClaimTypes.Role, user.RolAdi));
             }
 
-            // Güvenlik anahtarı
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            // Token oluştur
             var token = new JwtSecurityToken(
                 issuer: _jwtSettings.Issuer,
                 audience: _jwtSettings.Audience,

@@ -14,8 +14,9 @@ namespace NET.API.Controllers.TenantYonetimi
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromHeader(Name = "X-TenantId")] int tenantId, [FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
+            int tenantId = (int)HttpContext.Items["TenantId"];
             var result = await _identityService.AuthenticateAsync(request.Email, request.Password, tenantId);
 
             if (!result.Success)
@@ -41,8 +42,7 @@ namespace NET.API.Controllers.TenantYonetimi
         public async Task<IActionResult> ForgotPassword([FromHeader(Name = "X-TenantId")] int tenantId, [FromBody] ForgotPasswordRequest request)
         {
             var result = await _identityService.InitiatePasswordResetAsync(request.Email, tenantId);
-
-            // Güvenlik nedeniyle her zaman başarılı mesajı dön
+        
             return Ok(new { message = "Şifre sıfırlama talimatları e-posta adresinize gönderilmiştir (eğer hesap mevcutsa)" });
         }
 

@@ -31,6 +31,7 @@ namespace NET.Infrastructure
             // TenantYonetimi Repository'leri
             services.AddScoped<IKullaniciRepository, KullaniciRepository>();
             services.AddScoped<IRolRepository, RolRepository>();
+            services.AddScoped<ITenantRepository, TenantRepository>();
             //services.AddScoped<IIzinRepository, IzinRepository>();
 
             //// SiteYonetimi Repository'leri

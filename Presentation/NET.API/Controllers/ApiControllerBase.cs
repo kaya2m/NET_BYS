@@ -29,9 +29,9 @@ namespace NET.API.Controllers
                 return tenantId;
             }
 
-            if (CurrentUser.TenantId.HasValue)
+            if (CurrentUser.TenantId  != null)
             {
-                return CurrentUser.TenantId.Value;
+                return CurrentUser.TenantId;
             }
 
             return 0;
